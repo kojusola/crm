@@ -1,0 +1,215 @@
+.dashboard-div {
+    width: 100%;
+    // border: 1px solid;
+    min-height: calc(100vh - 100px);
+    margin-bottom: 0px;
+    padding-left: 30px;
+    padding-right: 40px;
+}
+
+.show-check-items {
+    width: 160px;
+    float: left;
+    text-align: right;
+}
+
+.form-check-input,
+.show-check-labels {
+    cursor: pointer;
+}
+
+// input[type="checkbox"] {
+//     width: 14px !important;
+//     height: 14px !important;
+//     // margin: 5px;
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//     -o-appearance: none;
+//     appearance: none;
+//     outline: 1px solid gray;
+//     box-shadow: none;
+//     font-size: 0.8em;
+//     border: none;
+//     text-align: center;
+//     line-height: 1em;
+//     background: white;
+// }
+
+// input[type="checkbox"]:checked:after {
+//     content: "✔";
+//     border: none;
+//     box-shadow: none;
+//     outline: 1px solid gray;
+//     color: green;
+// }
+
+.scrollable-calendar-div {
+    width: 100%;
+    height: 58px;
+    clear: both;
+    margin-bottom: 25px;
+}
+
+.sales-and-calender-container-div {
+    clear: both;
+    width: 100%;
+}
+
+.sales-and-calender-container-div h2 {
+}
+
+.sales-breakdown-div {
+    position: relative;
+    clear: both;
+    width: 100%;
+    height: 340px;
+    cursor: pointer;
+    padding: 20px 30px 20px 30px;
+    margin-bottom: 40px;
+    border: 1px solid #e3e3ea;
+    border-radius: 0.1875rem;
+    // box-shadow: 0px 0px 2px #e4e4e4;
+    background-color: #ffffff;
+    z-index: 100;
+}
+
+.scores-component-div {
+    clear: both;
+    width: 100%;
+    height: auto;
+    // clear: both;
+    margin: 78px 0px;
+    margin-bottom: 160px;
+    // border: 1px solid;
+}
+
+.calendar-div {
+    float: left;
+    width: 10%;
+    height: 55px;
+    // border: 1px solid;
+}
+
+.calendar-card {
+    width: 90%;
+    height: 55px;
+    padding-top: 5px;
+    // border: 1px solid #ccc;
+    text-align: center;
+    border: 1px solid #e3e3e3;
+    border-radius: 0.1875rem;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.calendar-card h3 {
+    // border: 1px solid;
+    font-size: 1em;
+    margin-top: 0px;
+}
+
+.calendar-card p {
+    // border: 1px solid;
+    margin-top: -10px;
+}
+
+.day-heading-div {
+    min-width: 240px;
+    // width: 16.66666666666667%;
+    width: 20%;
+    height: 50px;
+    float: left;
+    // border: 1px solid;
+}
+
+.tick-div {
+    min-width: 15px;
+    // width: 1.38888888889%;
+    width: 1.66666666666667%;
+    float: left;
+    position: relative;
+    z-index: 300;
+    // border: 1px solid;
+}
+
+.score-div {
+    float: left;
+    // min-width: 290px;
+    width: 20%;
+    margin-bottom: 20px;
+}
+
+.score-div:nth-child(2) {
+    padding-right: 15px;
+}
+
+.score-div:nth-child(3),
+.score-div:nth-child(4),
+.score-div:nth-child(5) {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.score-div:nth-child(6) {
+    padding-left: 15px;
+}
+
+.score-card {
+    position: relative;
+    float: left;
+    height: 55px;
+    cursor: pointer;
+    width: 100%;
+    height: auto;
+    padding-top: 5px;
+    // border: 1px solid #ccc;
+    // text-align: center;
+    padding: 10px 25px 4px 25px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 0.1875rem;
+}
+
+.score-title {
+    // border: 1px solid;
+    clear: both;
+    font-size: 1.125em;
+}
+
+.score-body {
+    width: 70%;
+    float: left;
+    padding: 0;
+}
+
+.score-body h1 {
+    padding: 0px;
+    margin-top: 10px;
+    font-size: 1.425em;
+}
+
+.score-change {
+    width: 30%;
+    float: left;
+    padding-top: 14px;
+    position: relative;
+    // border: 1px solid;
+}
+
+.score-change-value {
+    // display: inline-block;
+    float: right;
+    margin-right: 20px;
+    // border: 1px solid;
+}
+
+.up-icon {
+    // border: 1px solid;
+    // display: inline-block;
+    height: 22px;
+    position: absolute;
+    top: 12px;
+    float: right;
+    right: -10px;
+    // margin-top: -20px;
+}

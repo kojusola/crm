@@ -1,0 +1,19 @@
+.metric-chart-div {
+    float: left;
+    // min-width: 290px;
+    width: 50%;
+    height: auto;
+    padding-right: 25px;
+}
+
+.metric-chart-card {
+    cursor: pointer;
+    width: 100%;
+    height: 490px;
+    // border: 1px solid #ccc;
+    // text-align: center;
+    padding: 60px 20px 0px 20px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 0.1875rem;
+}

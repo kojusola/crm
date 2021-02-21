@@ -1,0 +1,48 @@
+.pagination-nav {
+    height: 34px;
+}
+
+.pagination-nav .pagination {
+    float: right;
+}
+
+.pagination-nav .pagination-status {
+    float: left;
+}
+
+.pagination > .page-item > .page-link {
+    background-color: transparent !important;
+    color: #181818 !important;
+    cursor: pointer !important;
+    border: none;
+    box-shadow: none;
+    padding: 6px 12px;
+    margin-right: 10px;
+}
+
+// .pagination > .page-item > .page-link:focus {
+//     background-color: #383838 !important;
+//     color: #ffffff !important;
+//     cursor: pointer !important;
+//     border: none;
+//     box-shadow: none;
+// }
+
+.pagination .page-item.active .page-link {
+    background-color: #333333 !important;
+    color: #ffffff !important;
+    cursor: pointer !important;
+    border: none;
+    box-shadow: none;
+}
+
+.disabled {
+    color: #aaaaaa !important;
+}
+
+// .page-link:not(:disabled):not(.disabled):active,
+// .page-link:not(:disabled):not(.disabled).active {
+//     color: #fff;
+//     background-color: #02b875;
+//     border-color: #02b875;
+// }

@@ -1,0 +1,32 @@
+.footer-div {
+    width: 100%;
+    clear: both;
+    text-align: center;
+    height: auto;
+    padding: 10px 10px 20px 10px;
+}
+
+.footer-list ul {
+    width: 350px;
+    margin: 0 auto;
+}
+
+.footer-list ul li {
+    display: inline-block;
+    width: auto;
+    padding: 2px 15px;
+}
+
+.footer-links {
+    text-decoration: none;
+    font-size: 0.9em;
+    color: #333;
+}
+
+.footer-links:visited {
+    color: #333;
+}
+
+.footer-links:hover {
+    color: #333;
+}

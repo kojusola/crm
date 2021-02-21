@@ -1,0 +1,17 @@
+.metric-chart-div {
+  float: left;
+  width: 50%;
+  height: auto;
+  padding-right: 25px;
+}
+
+.metric-chart-card {
+  cursor: pointer;
+  width: 100%;
+  height: 490px;
+  padding: 60px 20px 0px 20px;
+  background-color: #ffffff;
+  border: 1px solid #e3e3e3;
+  border-radius: 0.1875rem;
+}
+/*# sourceMappingURL=MetricCharts.css.map */

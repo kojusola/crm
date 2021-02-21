@@ -1,0 +1,73 @@
+.nav-bar {
+  min-width: 80px;
+  min-height: 600px;
+  width: 0.2%;
+  float: left;
+  position: fixed;
+  padding: 0px 10px 10px 10px !important;
+  height: 100vh;
+  border-right: 1px solid #ddd;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+ul {
+  list-style: none;
+  /* Remove list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.nav-bar-link-li {
+  height: 50px;
+  padding: 14px 6px 35px 6px;
+  text-decoration: none;
+  color: #181818;
+}
+
+.nav-bar-link-item {
+  position: relative;
+}
+
+.nav-bar-link-item:hover .nav-link-text {
+  text-decoration: none !important;
+}
+
+.wrapping-span {
+  display: "inline-block";
+  padding: 8px;
+  border-radius: 50%;
+}
+
+span.nav-link-text {
+  position: absolute;
+  top: 0px;
+  width: 180px;
+  padding: 0px 10px 5px 20px;
+  font-size: 1.075em;
+  color: #181818;
+  text-decoration: none !important;
+}
+
+.nav-link-text:hover {
+  text-decoration: none !important;
+}
+
+.hamburger-div {
+  position: absolute;
+  bottom: 30px;
+  height: auto;
+  padding: 1px 0px;
+}
+
+.hamburger-icon {
+  background-color: transparent;
+  border: 0px solid;
+  outline: none;
+  padding: 2px 1px;
+}
+/*# sourceMappingURL=NavBar.css.map */
