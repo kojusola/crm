@@ -8,6 +8,7 @@ export { default as NavHeader } from "./NavHeader.jsx";
 export { default as SidePullUp } from "./SidePullUp.jsx";
 export { default as NavBarLink } from "./NavBarLink.jsx";
 export { default as LineChart } from "./LineChart.jsx";
+export { default as BarChart } from "./BarChart.jsx";
 export { default as Step } from "./Step.jsx";
 export { default as MetricCharts } from "./MetricCharts.jsx";
 export { default as AnalyticsSummary } from "./AnalyticsSummary.jsx";

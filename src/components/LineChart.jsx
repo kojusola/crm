@@ -100,32 +100,32 @@ let series = [
 //     },
 // ];
 
-const BarChartOptions = {
-    chart: {
-        type: "column",
-    },
-    title: {
-        text: "Bar Chart",
-    },
-    xAxis: {
-        categories: ["January", "February", "March", "April", "May", "June"],
-    },
-    colors: ["#FB8833", "#17A8F5"],
-    series: [
-        {
-            name: "Sales",
-            data: [21, 35, 75, 51, 41, 47],
-        },
-        {
-            name: "Leads",
-            data: [41, 79, 57, 47, 63, 71],
-        },
-    ],
-    credits: {
-        enabled: false,
-    },
-    label: { minFontSize: "1.2rem" },
-};
+// const BarChartOptions = {
+//     chart: {
+//         type: "column",
+//     },
+//     title: {
+//         text: "Bar Chart",
+//     },
+//     xAxis: {
+//         categories: ["January", "February", "March", "April", "May", "June"],
+//     },
+//     colors: ["#FB8833", "#17A8F5"],
+//     series: [
+//         {
+//             name: "Sales",
+//             data: [21, 35, 75, 51, 41, 47],
+//         },
+//         {
+//             name: "Leads",
+//             data: [41, 79, 57, 47, 63, 71],
+//         },
+//     ],
+//     credits: {
+//         enabled: false,
+//     },
+//     label: { minFontSize: "1.2rem" },
+// };
 
 function LineChart() {
     return <Chart series={series} options={options} type="area" height="90%" />;

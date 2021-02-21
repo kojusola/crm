@@ -1,7 +1,5 @@
 import { LineChart } from "../components/";
 
-import { metrics_data } from "../data/constants";
-
 import "./styles/MetricCharts.css";
 
 function MetricChart({ title, score, percent_change }) {
@@ -34,15 +32,8 @@ function MetricCharts() {
     return (
         <>
             <div className="metric-chart-div">
-                {/* <p>
-                    <em>
-                        Click a legend item to hide its corresponding chart.
-                    </em>
-                </p> */}
                 <div style={{ clear: "both" }}>
-                    {metrics_data.map((metric) => {
-                        return <MetricChart key={metric} />;
-                    })}
+                    <MetricChart />
                 </div>
             </div>
         </>

@@ -1,7 +1,5 @@
 import { Tick, ScrollableCalendar } from "../components";
 
-import { ArrowNarrowUp } from "tabler-icons-react";
-
 import { days, start_hour, sales_by_hour } from "../data/constants";
 
 function SalesBreakdown() {

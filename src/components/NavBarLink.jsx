@@ -1,19 +1,9 @@
 import { Link, useRouteMatch } from "react-router-dom";
 
-import {
-    Gauge,
-    History,
-    Settings,
-    ChartLine,
-    Lifebuoy,
-    Box,
-    TrendingUp,
-} from "tabler-icons-react";
+import { Gauge, History, Settings, Box, TrendingUp } from "tabler-icons-react";
 
 // import { ContactsBook as Contacts } from "@styled-icons/remix-line/ContactsBook";
 import { Contacts } from "@styled-icons/typicons/Contacts";
-
-import { Contact } from "@styled-icons/boxicons-solid/Contact";
 
 // const BlackContact = styled(Contact)`
 //     color: #0e9168;

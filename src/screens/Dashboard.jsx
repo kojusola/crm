@@ -32,7 +32,8 @@ const steps = [
                 ]}
             />
         ),
-        position: [1210, 420],
+        // position: [1210, 420],
+        position: [650, 13],
     },
     {
         selector: ".nav-bar",
@@ -163,10 +164,7 @@ class Dashboard extends Component {
                             className="show-check-items-container-div"
                             style={{ width: "auto", float: "right" }}
                         >
-                            <div
-                                className="form-check"
-                                className="show-check-items"
-                            >
+                            <div className="form-check show-check-items">
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
@@ -213,10 +211,7 @@ class Dashboard extends Component {
                                 </label>
                             </div> */}
 
-                            <div
-                                className="form-check"
-                                className="show-check-items"
-                            >
+                            <div className="form-check show-check-items">
                                 <input
                                     className="form-check-input"
                                     type="checkbox"
@@ -269,6 +264,7 @@ class Dashboard extends Component {
                     accentColor="#0e9168"
                     // showCloseButton={false}
                     rounded={8}
+                    closeWithMask={false}
                     nextButton={
                         <button type="button" className="btn btn-primary">
                             Next step

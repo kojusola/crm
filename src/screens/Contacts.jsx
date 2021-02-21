@@ -18,41 +18,7 @@ import { clients } from "../data/constants";
 
 const steps = [
     {
-        selector: ".first-elem",
-        content: (
-            <Step
-                heading="Contacts"
-                body={[
-                    `Good! You manage your contacts here. Let's add your first contact!.`,
-                ]}
-            />
-        ),
-        position: [700, 100],
-    },
-    {
-        selector: ".first-elem",
-        content: (
-            <Step
-                heading="Contacts"
-                body={[
-                    `Good! You manage your contacts here. Let's add your first contact!.`,
-                ]}
-            />
-        ),
-    },
-    {
-        selector: ".first-elem",
-        content: (
-            <Step
-                heading="Contacts"
-                body={[
-                    `Good! You manage your contacts here. Let's add your first contact!.`,
-                ]}
-            />
-        ),
-    },
-    {
-        selector: ".first-elem",
+        selector: "",
         content: (
             <Step
                 heading="Contacts"
@@ -341,7 +307,7 @@ class Contacts extends React.Component {
                             accentColor="#0e9168"
                             // showCloseButton={false}
                             rounded={8}
-                            startAt={3}
+                            closeWithMask={false}
                             nextButton={
                                 <button
                                     type="button"

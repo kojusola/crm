@@ -23,25 +23,24 @@ function Home() {
                         </Link>
                     </li>
                     <li className="nav-item float-right">
-                        <a className="nav-link pt-4" href="#">
+                        <Link className="nav-link pt-4" to="/">
                             Active
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-item dropdown float-right">
-                        <a
+                        <button
                             className="nav-link dropdown-toggle pt-4"
                             data-toggle="dropdown"
                             href="#"
-                            role="button"
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
                             Resources
-                        </a>
+                        </button>
                         <div className="dropdown-menu float-right">
-                            <a className="dropdown-item pt-3 pb-3" href="#">
+                            <button className="dropdown-item pt-3 pb-3">
                                 Action
-                            </a>
+                            </button>
                             <Link
                                 to="/help-and-support"
                                 className="dropdown-item pt-3 pb-3"

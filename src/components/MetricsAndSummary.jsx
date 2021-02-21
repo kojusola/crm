@@ -8,6 +8,11 @@ function MetricsAndSummary() {
             <h2 className="heavy-font dashboard-section-heading">
                 Metric Charts
             </h2>
+            <p style={{ fontSize: "0.8rem" }}>
+                <em>
+                    Click a legend item to show/hide its corresponding chart.
+                </em>
+            </p>
             <MetricCharts />
             <AnalyticsSummary />
         </div>

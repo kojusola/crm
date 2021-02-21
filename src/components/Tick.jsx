@@ -1,9 +1,9 @@
-import { days, start_hour, sales_by_hour } from "../data/constants";
+import { days } from "../data/constants";
 
 function Tick({ value, hour, day }) {
     let offset = (days.indexOf(day) - 1) * 20;
     // offset = offset + 1.8;
-    if (offset == 0) {
+    if (offset === 0) {
         offset = "calc(" + offset.toString() + "% + 30px)";
     } else {
         offset = "calc(" + offset.toString() + "% + 18px)";
