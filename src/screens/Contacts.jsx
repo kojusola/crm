@@ -1,69 +1,76 @@
-import React from "react";
+import React, { Component } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Tour from "reactour";
 import GoogleContacts from "react-google-contacts";
 
 import { PersonAddOutline } from "@styled-icons/evaicons-outline/PersonAddOutline";
 
-import {
-    Header,
-    ContactsTable,
-    EmptyState,
-    SidePullUp,
-    Step,
-} from "../components/";
+import { Header, ContactsTable, EmptyState, SidePullUp } from "../components/";
+
+import { contacts_steps } from "./steps";
 
 import "./styles/Contacts.css";
 
+import {
+    isContactsTourOpen,
+    setIsContactsTourOpen,
+} from "../features/app/appSlice";
+
 import { clients } from "../data/constants";
 
-const steps = [
-    {
-        selector: "",
-        content: (
-            <Step
-                heading="Contacts"
-                body={[
-                    `Good! You manage your contacts here. Let's add your first contact!.`,
-                ]}
-            />
-        ),
-    },
-];
+function TourComponent() {
+    const contactsTourState = useSelector(isContactsTourOpen);
+    const dispatch = useDispatch();
 
-class Contacts extends React.Component {
+    return (
+        <Tour
+            steps={contacts_steps}
+            isOpen={contactsTourState}
+            accentColor="#0e9168"
+            // showCloseButton={false}
+            rounded={8}
+            closeWithMask={false}
+            nextButton={
+                <button type="button" className="btn btn-primary">
+                    Next step
+                </button>
+            }
+            lastStepNextButton={
+                <button type="button" className="btn btn-primary">
+                    Done!
+                </button>
+            }
+            onRequestClose={() => dispatch(setIsContactsTourOpen())}
+        />
+    );
+}
+
+class Contacts extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            vcfContent: "",
+            theInputKey: "",
+
             // allClients: clients,
             allClients: [],
             itemsCount: clients.length,
             currentPage: 1,
             pageLimit: 10,
-            currentClients: [],
             totalPages: null,
 
             // form
             firstName: "",
             lastName: "",
             phone: "",
-
-            isTourOpen: true,
         };
 
         this.handleChangeTextInput = this.handleChangeTextInput.bind(this);
         this.handleAddContactByText = this.handleAddContactByText.bind(this);
-        this.handlePageChange = this.handlePageChange.bind(this);
         this.handleFile = this.handleFile.bind(this);
         this.handleLoadFile = this.handleLoadFile.bind(this);
         this.responseCallback = this.responseCallback.bind(this);
-        this.setIsTourOpen = this.setIsTourOpen.bind(this);
-    }
-
-    setIsTourOpen() {
-        this.setState({
-            isTourOpen: false,
-        });
     }
 
     handleChangeTextInput(evt) {
@@ -90,7 +97,7 @@ class Contacts extends React.Component {
             let combined_clients = clients.concat(line);
 
             this.setState({
-                allClients: [...combined_clients],
+                allClients: combined_clients,
                 itemsCount: combined_clients.length,
             });
 
@@ -102,18 +109,10 @@ class Contacts extends React.Component {
         }
     }
 
-    handlePageChange(data) {
-        const { allClients } = this.state;
-        const { currentPage, totalPages, pageLimit } = data;
+    handleFile(evt) {
+        evt.preventDefault();
 
-        const offset = (currentPage - 1) * pageLimit;
-        const currentClients = allClients.slice(offset, offset + pageLimit);
-
-        this.setState({ currentPage, currentClients, totalPages });
-    }
-
-    handleFile(res) {
-        let result = res;
+        let result = this.state.vcfContent;
 
         result = result.toLowerCase();
         result = result.split("\n");
@@ -165,48 +164,23 @@ class Contacts extends React.Component {
         let clients = [...this.state.allClients];
         let combined_clients = clients.concat(contacts_pair_list);
 
+        console.log(combined_clients);
+
         this.setState({
-            allClients: [...combined_clients],
+            allClients: combined_clients,
             itemsCount: combined_clients.length,
         });
 
-        // contacts = (
-        //     <table>
-        //         <thead>
-        //             <tr>
-        //                 <th>Name</th>
-        //                 <th>Phone Number</th>
-        //             </tr>
-        //         </thead>
-        //         <tbody>
-        //             {contacts_pair_list.map((pair, id) => {
-        //                 if (pair[0] && pair[0].includes("fn:")) {
-        //                     pair[0] = pair[0]
-        //                         .replace("fn:", "")
-        //                         .replace("\n", "");
-        //                 }
+        this.setState({ vcfContent: "" });
+        this.resetFileInput();
+    }
 
-        //                 if (pair[1].includes("tel")) {
-        //                     pair[1] = pair[1]
-        //                         .replace("tel:", "")
-        //                         .replace("tel;", "")
-        //                         .replace("cell:", "")
-        //                         .replace("cell;", "")
-        //                         .replace("pref:", "")
-        //                         .replace(":", "");
-        //                 }
+    resetFileInput() {
+        let randomString = Math.random().toString(36);
 
-        //                 return (
-        //                     <tr key={id}>
-        //                         <td className="name-column">{pair[0]}</td>
-        //                         <td>{pair[1]}</td>
-        //                     </tr>
-        //                 );
-        //             })}
-        //         </tbody>
-        //     </table>
-        // );
-        // setContacts(contacts);
+        this.setState({
+            theInputKey: randomString,
+        });
     }
 
     handleLoadFile(e) {
@@ -215,7 +189,7 @@ class Contacts extends React.Component {
         // setContacts("please wait...");
 
         fr.onload = () => {
-            this.handleFile(fr.result);
+            this.setState({ vcfContent: fr.result });
         };
 
         if (!e.target.files[0]["name"].toLowerCase().includes("vcf")) {
@@ -232,16 +206,18 @@ class Contacts extends React.Component {
         const {
             pageLimit,
             allClients,
-            currentClients,
             firstName,
             lastName,
             phone,
-            isTourOpen,
         } = this.state;
 
-        const { setIsTourOpen } = this;
-
-        const totalClients = allClients.length;
+        const {
+            handleFile,
+            handleLoadFile,
+            handleChangeTextInput,
+            handleAddContactByText,
+            responseCallback,
+        } = this;
 
         // let clients = paginate(allClients, currentPage, pageSize);
 
@@ -269,11 +245,8 @@ class Contacts extends React.Component {
 
                     {allClients.length > 0 && (
                         <ContactsTable
-                            totalRecords={totalClients}
                             pageLimit={pageLimit}
-                            currentClients={currentClients}
-                            pageNeighbours={1}
-                            onPageChanged={this.handlePageChange}
+                            allClients={allClients}
                         />
                     )}
                     <>
@@ -301,31 +274,7 @@ class Contacts extends React.Component {
                                 </button>
                             </EmptyState>
                         )}
-                        <Tour
-                            steps={steps}
-                            isOpen={isTourOpen}
-                            accentColor="#0e9168"
-                            // showCloseButton={false}
-                            rounded={8}
-                            closeWithMask={false}
-                            nextButton={
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                >
-                                    Next step
-                                </button>
-                            }
-                            lastStepNextButton={
-                                <button
-                                    type="button"
-                                    className="btn btn-primary"
-                                >
-                                    Done!
-                                </button>
-                            }
-                            onRequestClose={() => setIsTourOpen(false)}
-                        />
+                        <TourComponent />
                     </>
                 </div>
 
@@ -436,16 +385,47 @@ class Contacts extends React.Component {
                                         </ol>
                                     </div>
 
-                                    <input
-                                        type="file"
-                                        name="inputfile"
-                                        className="inputfile"
-                                        id="inputfile"
-                                        onChange={(e) => {
-                                            this.handleLoadFile(e);
-                                        }}
-                                        style={{ cursor: "pointer" }}
-                                    />
+                                    <form onSubmit={handleFile}>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input
+                                                    type="file"
+                                                    name="inputfile"
+                                                    className="inputfile"
+                                                    id="inputfile"
+                                                    onChange={(e) => {
+                                                        handleLoadFile(e);
+                                                    }}
+                                                    style={{
+                                                        cursor: "pointer",
+                                                    }}
+                                                    key={
+                                                        this.state
+                                                            .theInputKey || ""
+                                                    }
+                                                />
+                                            </div>
+                                            <div>
+                                                <button
+                                                    class="btn btn-primary"
+                                                    type="submit"
+                                                >
+                                                    Upload
+                                                </button>
+                                            </div>
+                                        </div>
+                                        {/* <input
+                                            type="file"
+                                            name="inputfile"
+                                            className="inputfile"
+                                            id="inputfile"
+                                            onChange={(e) => {
+                                                handleLoadFile(e);
+                                            }}
+                                            style={{ cursor: "pointer" }}
+                                            key={this.state.theInputKey || ""}
+                                        /> */}
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -478,9 +458,7 @@ class Contacts extends React.Component {
                                         minHeight: "220px",
                                     }}
                                 >
-                                    <form
-                                        onSubmit={this.handleAddContactByText}
-                                    >
+                                    <form onSubmit={handleAddContactByText}>
                                         <div className="input-group mb-2">
                                             <div className="input-group-prepend">
                                                 <span
@@ -498,9 +476,7 @@ class Contacts extends React.Component {
                                                 aria-describedby="basic-addon2"
                                                 name="firstName"
                                                 value={firstName}
-                                                onChange={
-                                                    this.handleChangeTextInput
-                                                }
+                                                onChange={handleChangeTextInput}
                                             />
                                         </div>
                                         <div className="input-group mb-2">
@@ -520,9 +496,7 @@ class Contacts extends React.Component {
                                                 aria-describedby="basic-addon2"
                                                 name="lastName"
                                                 value={lastName}
-                                                onChange={
-                                                    this.handleChangeTextInput
-                                                }
+                                                onChange={handleChangeTextInput}
                                             />
                                         </div>
                                         <div className="input-group mb-2">
@@ -542,9 +516,7 @@ class Contacts extends React.Component {
                                                 aria-describedby="basic-addon2"
                                                 name="phone"
                                                 value={phone}
-                                                onChange={
-                                                    this.handleChangeTextInput
-                                                }
+                                                onChange={handleChangeTextInput}
                                             />
                                         </div>
                                         <button
@@ -587,8 +559,8 @@ class Contacts extends React.Component {
                                     <GoogleContacts
                                         clientId="429632624144-40js6mbas4r3tmjursoco68eoum0a24v.apps.googleusercontent.com"
                                         buttonText="Import Contacts from Gmail"
-                                        onSuccess={this.responseCallback}
-                                        onFailure={this.responseCallback}
+                                        onSuccess={responseCallback}
+                                        onFailure={responseCallback}
                                         style={{ color: "#4285F4", width: 900 }}
                                         className="google-button"
                                     >

@@ -62,4 +62,8 @@
   background-color: #02a865;
   border-color: #02a865;
 }
+
+.dropdown-menu > button.nav-link.dropdown-toggle {
+  border: 2px solid red !important;
+}
 /*# sourceMappingURL=Home.css.map */

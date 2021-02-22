@@ -89,6 +89,18 @@ function App() {
                     <Route path="/help-and-support">
                         <HelpAndSupport />
                     </Route>
+                    <Route exact path="/dashboard">
+                        <Content
+                            navWidth={navWidth}
+                            widthOffset={widthOffset}
+                            contentClassName={contentClassName}
+                            shouldHideNavText={shouldHideNavText}
+                            expandIcon={expandIcon}
+                            handleChangeWidth={handleChangeWidth}
+                        >
+                            <Dashboard />
+                        </Content>
+                    </Route>
                     {routes.map((item, id) => {
                         return (
                             <Route path={item.route} key={id}>

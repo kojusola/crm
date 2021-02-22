@@ -1,54 +1,20 @@
-import { Component } from "react";
-
+import { Component, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Tour from "reactour";
-
-import { Header, MetricsAndSummary, Step } from "../components/";
 
 import { UpArrowAlt } from "@styled-icons/boxicons-regular/UpArrowAlt";
 
+import { Header, MetricsAndSummary } from "../components/";
+
 import { metrics } from "../data/constants";
+import { dashboard_steps } from "./steps";
+
 import "./styles/Dashboard.css";
 
-const steps = [
-    {
-        selector: ".first-step",
-        content: (
-            <Step
-                heading="Welcome"
-                body={[
-                    `Welcome to Paperwork CRM. Let's give you a quick tour of the
-        environment!`,
-                ]}
-            />
-        ),
-    },
-    {
-        selector: ".dashboard-div",
-        content: (
-            <Step
-                heading="Dashboard"
-                body={[
-                    `Here's your dashboard. We catch you up on all the action here.`,
-                ]}
-            />
-        ),
-        // position: [1210, 420],
-        position: [650, 13],
-    },
-    {
-        selector: ".nav-bar",
-        content: (
-            <Step
-                heading="Navigation"
-                body={[
-                    `This is your navigation menu, from which you can switch views.`,
-                    `Click the 'Contacts' icon (the little address book) to go to your contacts view.`,
-                ]}
-            />
-        ),
-        stepInteraction: true,
-    },
-];
+import {
+    isDashboardTourOpen,
+    setIsDashboardTourOpen,
+} from "../features/app/appSlice";
 
 function ScoreDiv({ title, score, percent_change }) {
     return (
@@ -100,36 +66,16 @@ function ScoresComponent() {
     );
 }
 
-class Dashboard extends Component {
+class Toggler extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            showMetricCharts: true,
-            showSalesBreakdown: true,
-            showScoresComponent: true,
-            isTourOpen: true,
-        };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        this.setIsTourOpen = this.setIsTourOpen.bind(this);
-    }
-
-    setIsTourOpen() {
-        this.setState({
-            isTourOpen: false,
-        });
     }
 
     handleInputChange(event) {
-        const target = event.target;
-        const value =
-            target.type === "checkbox" ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value,
-        });
+        this.props.handleInputChange(event);
     }
 
     handleClick(event) {
@@ -145,137 +91,119 @@ class Dashboard extends Component {
     }
 
     render() {
-        const {
-            showMetricCharts,
-            showScoresComponent,
-            isTourOpen,
-        } = this.state;
-
-        const { setIsTourOpen, handleClick, handleInputChange } = this;
+        const { showMetricCharts, showScoresComponent } = this.props;
 
         return (
-            <div className="dashboard-div">
-                <Header heading="Dashboard">
-                    <div>
-                        <p style={{ width: "350px", float: "left" }}>
-                            Get valuable insights about your business here.
-                        </p>
-                        <div
-                            className="show-check-items-container-div"
-                            style={{ width: "auto", float: "right" }}
-                        >
-                            <div className="form-check show-check-items">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={showMetricCharts}
-                                    name="showMetricCharts"
-                                    id="defaultCheck1"
-                                    onChange={handleInputChange}
-                                    ref={(input) =>
-                                        (this.inputElement1 = input)
-                                    }
-                                />
-                                <label
-                                    className="form-check-label show-check-labels"
-                                    htmlFor="exampleCheck1"
-                                    id="label1"
-                                    onClick={handleClick}
-                                >
-                                    Metric Charts
-                                </label>
-                            </div>
+            <div
+                className="show-check-items-container-div"
+                style={{ width: "auto", float: "right" }}
+            >
+                <div className="form-check show-check-items">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={showMetricCharts}
+                        name="showMetricCharts"
+                        id="defaultCheck1"
+                        onChange={this.handleInputChange}
+                        ref={(input) => (this.inputElement1 = input)}
+                    />
+                    <label
+                        className="form-check-label show-check-labels"
+                        htmlFor="exampleCheck1"
+                        id="label1"
+                        onClick={this.handleClick}
+                    >
+                        Metric Charts
+                    </label>
+                </div>
 
-                            {/* <div
-                                className="form-check"
-                                className="show-check-items"
-                            >
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={showSalesBreakdown}
-                                    name="showSalesBreakdown"
-                                    id="defaultCheck1"
-                                    onChange={this.handleInputChange}
-                                    ref={(input) =>
-                                        (this.inputElement2 = input)
-                                    }
-                                />
-                                <label
-                                    className="form-check-label show-check-labels"
-                                    htmlFor="exampleCheck1"
-                                    id="label2"
-                                    onClick={this.handleClick}
-                                >
-                                    Sales Breakdown
-                                </label>
-                            </div> */}
-
-                            <div className="form-check show-check-items">
-                                <input
-                                    className="form-check-input"
-                                    type="checkbox"
-                                    checked={showScoresComponent}
-                                    name="showScoresComponent"
-                                    id="defaultCheck1"
-                                    onChange={handleInputChange}
-                                    ref={(input) =>
-                                        (this.inputElement3 = input)
-                                    }
-                                />
-                                <label
-                                    className="form-check-label show-check-labels"
-                                    htmlFor="exampleCheck1"
-                                    id="label3"
-                                    onClick={handleClick}
-                                >
-                                    Metric Summary
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* <div className="bs-example" style={{ clear: "both" }}>
-                        <div
-                            className="alert alert-warning alert-dismissible fade show"
-                            role="alert"
-                        >
-                            <strong>Todo:</strong> &nbsp;
-                            <ul>
-                                <li>- Use Redux to track</li>
-                                <li>- Add Authentication</li>
-                            </ul>
-                            <button
-                                type="button"
-                                className="close"
-                                data-dismiss="alert"
-                                aria-label="Close"
-                            >
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    </div> */}
-                </Header>
-                {showScoresComponent && <ScoresComponent />}
-                {showMetricCharts && <MetricsAndSummary />}
-                <Tour
-                    steps={steps}
-                    isOpen={isTourOpen}
-                    accentColor="#0e9168"
-                    // showCloseButton={false}
-                    rounded={8}
-                    closeWithMask={false}
-                    nextButton={
-                        <button type="button" className="btn btn-primary">
-                            Next step
-                        </button>
-                    }
-                    onRequestClose={() => setIsTourOpen(false)}
-                />
-                {/* {showSalesBreakdown && <SalesBreakdown />} */}
+                <div className="form-check show-check-items">
+                    <input
+                        className="form-check-input"
+                        type="checkbox"
+                        checked={showScoresComponent}
+                        name="showScoresComponent"
+                        id="defaultCheck1"
+                        onChange={this.handleInputChange}
+                        ref={(input) => (this.inputElement3 = input)}
+                    />
+                    <label
+                        className="form-check-label show-check-labels"
+                        htmlFor="exampleCheck1"
+                        id="label3"
+                        onClick={this.handleClick}
+                    >
+                        Metric Summary
+                    </label>
+                </div>
             </div>
         );
     }
+}
+
+function Dashboard() {
+    const [showMetricCharts, setShowMetricCharts] = useState(true);
+    // const [showSalesBreakdown, setShowSalesBreakdown] = useState(true);
+    const [showScoresComponent, setShowScoresComponent] = useState(true);
+
+    const dashboardTourState = useSelector(isDashboardTourOpen);
+    const dispatch = useDispatch();
+
+    // const [incrementAmount, setIncrementAmount] = useState("2");
+
+    function handleInputChange(event) {
+        const target = event.target;
+        const value =
+            target.type === "checkbox" ? target.checked : target.value;
+        const name = target.name;
+
+        if (name === "showMetricCharts") {
+            setShowMetricCharts(value);
+        } else if (name === "showScoresComponent") {
+            setShowScoresComponent(value);
+        }
+    }
+
+    return (
+        <div className="dashboard-div">
+            <Header heading="Dashboard">
+                <div>
+                    <p style={{ width: "350px", float: "left" }}>
+                        Get valuable insights about your business here.
+                    </p>
+                    <Toggler
+                        showMetricCharts={showMetricCharts}
+                        showScoresComponent={showScoresComponent}
+                        handleInputChange={handleInputChange}
+                    />
+                </div>
+            </Header>
+            <Tour
+                steps={dashboard_steps}
+                isOpen={dashboardTourState}
+                accentColor="#0e9168"
+                rounded={8}
+                // closeWithMask={false}
+                nextButton={
+                    <button type="button" className="btn btn-primary">
+                        Next step
+                    </button>
+                }
+                lastStepNextButton={
+                    <button type="button" className="btn btn-primary">
+                        Close
+                    </button>
+                }
+                // onBeforeClose={() => dispatch(setIsTourOpen())}
+                onRequestClose={() => dispatch(setIsDashboardTourOpen())}
+            />
+            {showScoresComponent && <ScoresComponent />}
+            {showMetricCharts && <MetricsAndSummary />}
+
+            {/* {showSalesBreakdown && <SalesBreakdown />} */}
+        </div>
+    );
 }
 
 export default Dashboard;

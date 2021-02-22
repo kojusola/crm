@@ -28,19 +28,19 @@ function Home() {
                         </Link>
                     </li>
                     <li className="nav-item dropdown float-right">
-                        <button
+                        <a
                             className="nav-link dropdown-toggle pt-4"
-                            data-toggle="dropdown"
                             href="#"
+                            data-toggle="dropdown"
                             aria-haspopup="true"
                             aria-expanded="false"
                         >
                             Resources
-                        </button>
+                        </a>
                         <div className="dropdown-menu float-right">
-                            <button className="dropdown-item pt-3 pb-3">
+                            <Link to="/" className="dropdown-item pt-3 pb-3">
                                 Action
-                            </button>
+                            </Link>
                             <Link
                                 to="/help-and-support"
                                 className="dropdown-item pt-3 pb-3"
