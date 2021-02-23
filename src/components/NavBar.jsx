@@ -22,7 +22,7 @@ function NavBar(props) {
 
     const routes = [
         {
-            to: "/dashboard",
+            to: "/",
             label: "Dashboard",
         },
         {
