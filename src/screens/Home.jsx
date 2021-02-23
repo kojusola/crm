@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 import { TopNavBar } from "../components";
 
-import home_img1 from "../assets/imgs/home_img1.svg";
+// import home_img1 from "../assets/imgs/home_img1.svg";
+import hero1 from "../assets/imgs/hero1.png";
 import "./styles/Home.css";
 
 function Home() {
@@ -76,7 +77,7 @@ function Home() {
                         <p className="tagline">
                             A robust suite of styled components, powered by
                             Bootstrap 4. Ready to take your Website or App up a
-                            notch?&nbsp;
+                            notch? (#WIP) &nbsp;
                         </p>
                         <div style={{ marginTop: "30px" }}>
                             <Link to="/dashboard">
@@ -85,7 +86,7 @@ function Home() {
                                     className="btn btn-primary btn-lg"
                                     data-trigger="#side-menu"
                                 >
-                                    Open Dashboard ->
+                                    Open Dashboard &gt;&gt;
                                 </button>
                             </Link>
                         </div>
@@ -100,7 +101,7 @@ function Home() {
                     >
                         <div className="col-md-12 float-right pt-3 pl-5 pr-0">
                             <img
-                                src={home_img1}
+                                src={hero1}
                                 alt=""
                                 className="col-md-11 float-right"
                                 // style={{ position: "absolute", right: 0 }}
