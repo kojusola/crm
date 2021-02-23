@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { NavBar, Footer } from "./components";
 import {
-    // Home,/
+    Home,
     About,
     Contacts,
     Dashboard,
@@ -67,7 +67,7 @@ function App() {
         }
     }
     const routes = [
-        // { route: "/dashboard", component: <Dashboard /> },
+        { route: "/dashboard", component: <Dashboard /> },
         { route: "/contacts", component: <Contacts /> },
         { route: "/call-history", component: <CallHistory /> },
         { route: "/sales", component: <Sales /> },
@@ -83,13 +83,13 @@ function App() {
         <Router>
             <div className="App">
                 <Switch>
-                    {/* <Route exact path="/">
+                    <Route exact path="/">
                         <Home />
-                    </Route> */}
+                    </Route>
                     <Route path="/help-and-support">
                         <HelpAndSupport />
                     </Route>
-                    <Route exact path="/">
+                    <Route exact path="/dashboard">
                         <Content
                             navWidth={navWidth}
                             widthOffset={widthOffset}

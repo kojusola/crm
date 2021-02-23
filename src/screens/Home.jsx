@@ -18,15 +18,15 @@ function Home() {
                                 className="btn btn-primary"
                                 data-trigger="#side-menu"
                             >
-                                Get started
+                                Open Dashboard
                             </button>
                         </Link>
                     </li>
-                    <li className="nav-item float-right">
+                    {/* <li className="nav-item float-right">
                         <Link className="nav-link pt-4" to="/">
                             Active
                         </Link>
-                    </li>
+                    </li> */}
                     <li className="nav-item dropdown float-right">
                         <a
                             className="nav-link dropdown-toggle pt-4"
@@ -61,11 +61,11 @@ function Home() {
                             </a> */}
                         </div>
                     </li>
-                    <li className="nav-item float-right">
+                    {/* <li className="nav-item float-right">
                         <Link to="/" className="nav-link pt-4" href="#">
                             Link
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
                 <div className="col-md-12">
                     <div className="page-heading col-md-5 float-left">
@@ -85,10 +85,9 @@ function Home() {
                                     className="btn btn-primary btn-lg"
                                     data-trigger="#side-menu"
                                 >
-                                    Get started now
+                                    Open Dashboard ->
                                 </button>
                             </Link>
-                            {/* <Link to="/dashboard">Get Started</Link> */}
                         </div>
                     </div>
                     <div
