@@ -89,7 +89,7 @@ function App() {
                     <Route path="/help-and-support">
                         <HelpAndSupport />
                     </Route>
-                    <Route exact path="/dashboard">
+                    <Route exact path="/">
                         <Content
                             navWidth={navWidth}
                             widthOffset={widthOffset}
