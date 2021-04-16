@@ -1,5 +1,9 @@
 ## CRM Project
 
+### Before running, install all the libraries with:
+
+`yarn` (alternatively, `npm install`)
+
 ### How to run
 
 cd to project directory and run `yarn start`
