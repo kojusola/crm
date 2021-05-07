@@ -8,6 +8,7 @@ import { NavBar, Footer } from "./components";
 import {
     Home,
     About,
+    Login,
     Contacts,
     Dashboard,
     CallHistory,
@@ -85,6 +86,9 @@ function App() {
                 <Switch>
                     <Route exact path="/">
                         <Home />
+                    </Route>
+                    <Route exact path="/login">
+                        <Login />
                     </Route>
                     <Route path="/help-and-support">
                         <HelpAndSupport />
