@@ -1,0 +1,9 @@
+.background {
+  background: -webkit-gradient(linear, left top, right top, color-stop(60%, #F3F0EA), color-stop(0%, #ffffff)) !important;
+  background: linear-gradient(to right, #F3F0EA 60%, #ffffff 0%) !important;
+}
+
+.form-head {
+  color: #02a865;
+}
+/*# sourceMappingURL=Login.css.map */
